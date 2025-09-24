@@ -10,6 +10,7 @@ This project is a functional, full-screen dynamic stepper component built for an
 ![Scenarios page](./homepage.PNG)
 
 ## Table of Contents
+
 - [Quick Start](#quick-start)
 - [Architecture Overview](#architecture-overview)
 - [Key Technical Decisions](#key-technical-decisions)
@@ -24,6 +25,7 @@ This project is a functional, full-screen dynamic stepper component built for an
 ## Quick Start
 
 ### Prerequisites
+
 - Node.js (v18+ recommended)
 - npm or yarn
 - Angular CLI 20.2.1+
@@ -31,11 +33,13 @@ This project is a functional, full-screen dynamic stepper component built for an
 ### Installation & Setup
 
 1. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 2. **Start development server:**
+
    ```bash
    npm start
    # or
@@ -43,10 +47,12 @@ This project is a functional, full-screen dynamic stepper component built for an
    ```
 
 3. **Access the application:**
+
    - Open `http://localhost:4200/` in your browser
    - Navigate to "New Scenario" to start the stepper workflow
 
 4. **Run tests:**
+
    ```bash
    npm test
    ```
@@ -101,6 +107,7 @@ src/app/
 **Decision**: Centralized reactive form management with sessionStorage persistence
 
 **Rationale**:
+
 - **Single Source of Truth**: The `HelpersService` manages one main FormGroup containing all step forms
 - **Persistence Strategy**: SessionStorage ensures data survives page refreshes but clears on tab close
 - **Reactive Updates**: Form changes automatically trigger validation and persist to storage
@@ -128,6 +135,7 @@ private createMainForm() {
 ```
 
 **Benefits**:
+
 - Cross-step form validation
 - Automatic data recovery
 - Simplified component logic
@@ -140,19 +148,23 @@ private createMainForm() {
 **Validation Layers**:
 
 1. **Field-Level Validation**:
+
    ```typescript
    // Built-in validators
-   title: ['', [Validators.required, Validators.minLength(3)]]
-   totalRespondents: [undefined, [Validators.required, Validators.min(1)]]
+   title: ['', [Validators.required, Validators.minLength(3)]];
+   totalRespondents: [undefined, [Validators.required, Validators.min(1)]];
    ```
 
 2. **Cross-Field Validation**:
+
    ```typescript
    // Custom sum validator for percentage fields
    const sumValidator = (targetSum: number) => {
      return (control: AbstractControl): ValidationErrors | null => {
-       const sum = Object.values(control.value)
-         .reduce((total: number, current: any) => total + (+current || 0), 0);
+       const sum = Object.values(control.value).reduce(
+         (total: number, current: any) => total + (+current || 0),
+         0
+       );
        return sum === targetSum ? null : { totalNot100: { value: sum, required: targetSum } };
      };
    };
@@ -169,6 +181,7 @@ private createMainForm() {
    ```
 
 **Benefits**:
+
 - Immediate user feedback
 - Prevents invalid data submission
 - Consistent validation rules
@@ -199,12 +212,14 @@ getSurveyPaginatorData(parentPath: string): NavigatorData[] {
 ```
 
 **Key Features**:
+
 - **Self-Configuring**: Steps automatically appear based on route configuration
 - **Lazy Loading**: Components loaded on-demand for better performance
 - **Metadata Driven**: Route data specifies validation requirements
 - **Flexible Ordering**: Easy to reorder or add/remove steps
 
 **Benefits**:
+
 - Reduced maintenance overhead
 - Consistent navigation behavior
 - Easy to extend with new steps
@@ -260,6 +275,7 @@ private loadFormData(form: FormGroup): void {
 ```
 
 **Benefits**:
+
 - **Data Integrity**: Form state preserved across browser refreshes
 - **User Experience**: No data loss during navigation
 - **Performance**: Minimal memory footprint with sessionStorage
@@ -280,25 +296,32 @@ The application implements several sophisticated validation patterns:
 const sumValidator = (targetSum: number) => {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!control || !control.value) return null;
-    
-    const sum = Object.values(control.value)
-      .reduce((total: number, current: any) => total + (+current || 0), 0);
-    
-    return sum === targetSum ? null : { 
-      totalNot100: { value: sum, required: targetSum } 
-    };
+
+    const sum = Object.values(control.value).reduce(
+      (total: number, current: any) => total + (+current || 0),
+      0
+    );
+
+    return sum === targetSum
+      ? null
+      : {
+          totalNot100: { value: sum, required: targetSum },
+        };
   };
 };
 
 // Applied to impact drivers form
-impactDriversForm: this.fb.group({
-  I: [50, Validators.required],
-  M: [10, Validators.required],
-  P: [10, Validators.required],
-  A: [11, Validators.required],
-  C: [10, Validators.required],
-  T: [10, Validators.required],
-}, { validators: sumValidator(100) })
+impactDriversForm: this.fb.group(
+  {
+    I: [50, Validators.required],
+    M: [10, Validators.required],
+    P: [10, Validators.required],
+    A: [11, Validators.required],
+    C: [10, Validators.required],
+    T: [10, Validators.required],
+  },
+  { validators: sumValidator(100) }
+);
 ```
 
 #### 2. Real-time Calculated Fields
@@ -417,18 +440,18 @@ The application uses a **custom design system** built on Tailwind CSS:
 // Custom theme configuration in styles.scss
 @theme {
   /* Primary Colors */
-  --color-primary-zenithr: #0082C6;
-  --color-primary-button-hover: #03A9F4;
-  
+  --color-primary-zenithr: #0082c6;
+  --color-primary-button-hover: #03a9f4;
+
   /* Secondary/Neutral Colors */
   --color-secondary-zenithr: #757985;
-  --color-secondary-1000: #9297A0;
-  
+  --color-secondary-1000: #9297a0;
+
   /* Semantic Colors */
-  --color-success-500: #10B981;
-  --color-warning-500: #F59E0B;
-  --color-danger-500: #EF4444;
-  
+  --color-success-500: #10b981;
+  --color-warning-500: #f59e0b;
+  --color-danger-500: #ef4444;
+
   /* Background Colors */
   --color-bg: #f7f7f8;
 }
@@ -437,35 +460,42 @@ The application uses a **custom design system** built on Tailwind CSS:
 ### Component Design Patterns
 
 #### 1. Consistent Form Styling
+
 ```html
 <!-- Standardized input styling -->
-<input type="number" formControlName="promoters"
-       class="w-24 border rounded text-right p-2 focus:outline-none focus:border-blue-500">
+<input
+  type="number"
+  formControlName="promoters"
+  class="w-24 border rounded text-right p-2 focus:outline-none focus:border-blue-500"
+/>
 ```
 
 #### 2. Interactive Feedback
+
 ```html
 <!-- Dynamic validation styling -->
 <span [ngClass]="{'text-red-500': totalPercentage !== 100}">{{ totalPercentage }}%</span>
 
 <!-- Conditional error messages -->
 @if (form.invalid && totalPercentage !== 100) {
-  <p class="mt-2 text-red-500 text-sm text-center">
-    The total must sum to 100%.
-  </p>
+<p class="mt-2 text-red-500 text-sm text-center">The total must sum to 100%.</p>
 }
 ```
 
 #### 3. Progressive Enhancement
+
 ```html
 <!-- Button states with hover effects -->
-<button (click)="onNext()"
-        class="flex items-center px-4 py-2 text-white font-medium bg-primary-zenithr hover:bg-primary-button-hover rounded-md shadow transition-colors duration-200">
+<button
+  (click)="onNext()"
+  class="flex items-center px-4 py-2 text-white font-medium bg-primary-zenithr hover:bg-primary-button-hover rounded-md shadow transition-colors duration-200"
+></button>
 ```
 
 ### Responsive Design Approach
 
 The application uses a **mobile-first responsive strategy**:
+
 - Flexible layouts with Tailwind's responsive prefixes
 - Touch-friendly button sizes (minimum 44px)
 - Readable typography scales
@@ -491,58 +521,12 @@ The application is configured for comprehensive testing:
 }
 ```
 
-### Recommended Testing Patterns
-
-#### 1. Component Testing
-```typescript
-// Example: Testing form validation
-describe('EnpsComponent', () => {
-  it('should calculate correct eNPS score', () => {
-    component.form.patchValue({
-      promoters: 60,
-      passives: 15,
-      detractors: 25
-    });
-    
-    expect(component.overallScore).toBe(35); // 60 - 25 = 35
-  });
-});
-```
-
-#### 2. Service Testing
-```typescript
-// Example: Testing form persistence
-describe('HelpersService', () => {
-  it('should save and restore form data', () => {
-    const testData = { productDetailsForm: { title: 'Test' } };
-    service.mainForm.patchValue(testData);
-    
-    expect(sessionStorage.getItem('surveyFormData')).toBeTruthy();
-  });
-});
-```
-
-#### 3. Route Guard Testing
-```typescript
-// Example: Testing navigation guards
-describe('stepperFormGuard', () => {
-  it('should allow navigation when form is valid', () => {
-    spyOn(service.mainForm, 'get').and.returnValue({ valid: true });
-    
-    const result = stepperFormGuard(mockRoute);
-    
-    expect(result).toBe(true);
-  });
-});
-```
-
----
-
 ## Performance Considerations
 
 ### Optimization Strategies
 
 1. **Lazy Loading**: All page components are lazy-loaded
+
    ```typescript
    {
      path: 'select-product',
@@ -552,6 +536,7 @@ describe('stepperFormGuard', () => {
    ```
 
 2. **OnPush Change Detection**: Planned for high-frequency components
+
    ```typescript
    @Component({
      changeDetection: ChangeDetectionStrategy.OnPush
@@ -559,6 +544,7 @@ describe('stepperFormGuard', () => {
    ```
 
 3. **Signals for State Management**: Modern state primitives
+
    ```typescript
    drivers = signal(this.driversData);
    selectedDriver = signal<string>(this.controlKeys.at(0) || '');
