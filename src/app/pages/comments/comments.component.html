@@ -1,0 +1,35 @@
+<div class="p-6">
+  <h1 class="text-xl font-bold mb-2">Comments</h1>
+  <p class="text-gray-600 mb-6">Provide insights or justifications for each selected driver</p>
+
+  <div class="grid grid-cols-3 gap-6">
+    <div class="col-span-1 bg-white border rounded-md shadow p-4">
+      <h2 class="text-sm font-semibold text-gray-400 mb-2">LIST OF DRIVER</h2>
+      <ul class="space-y-2">
+        @for (driver of controlKeys; track driver) {
+        <li class="p-3 rounded-md cursor-pointer hover:bg-gray-100 transition-colors"
+          [ngClass]="{ 'bg-blue-100 font-bold text-blue-800': selectedDriver() === driver }"
+          (click)="updateSelectedDriver(driver)">
+          {{ driver }}
+        </li>
+        }
+      </ul>
+    </div>
+
+    <div class="col-span-2 bg-white border rounded-md shadow p-4">
+      <h2 class="text-sm font-semibold text-gray-400 mb-2">COMMENT</h2>
+      @if (selectedDriver()) {
+      <form [formGroup]="form">
+        <div class="relative">
+          <textarea [formControl]="currentFormControl()" #textarea rows="6" placeholder="Type your comment here..."
+            class="w-full border rounded-md p-3 focus:outline-none focus:border-blue-500">
+          </textarea>
+          <span class="absolute top-3 right-3 text-gray-400 text-lg">🌐</span>
+        </div>
+      </form>
+      } @if (!selectedDriver()) {
+      <div class="p-4 text-center text-gray-500">Select a driver to add a comment.</div>
+      }
+    </div>
+  </div>
+</div>

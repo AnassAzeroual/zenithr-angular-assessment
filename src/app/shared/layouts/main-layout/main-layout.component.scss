@@ -1,0 +1,32 @@
+.layout-container {
+    min-width: 380px;
+    .divider {
+        border-left: 1px solid hsl(0, 0%, 90%);
+        height: 30px;
+        margin: 0 12px;
+    }
+
+    .boxShadow {
+        box-shadow: var(--zenithr-box-shadow);
+    }
+
+    .Investors {
+        display: flex;
+        align-items: baseline;
+        font-size: 0.75rem;
+        padding: 3px 6px;
+        font-size: 9px;
+        border-radius: 2px;
+        color: #6B7280;
+        line-height: 1rem;
+        font-weight: 500;
+        background-color: var(--color-secondary-100);
+    }
+
+    @media (max-width: 600px) {
+        .my-outlet {
+            overflow: scroll;
+        }
+    }
+
+}

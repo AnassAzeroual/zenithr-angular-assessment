@@ -1,0 +1,73 @@
+<div class="flex flex-col h-screen bg-bg">
+  <!-- ----------------------------------------------------------------------- -->
+  <!--                                 Header                                  -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="header flex justify-between p-6 bg-white shadow-sm">
+    <div class="justify-start">
+      <p class="text-primary-zenithr text-sm font-medium uppercase">New scenario</p>
+      <h3 class="font-bold text-lg">HR Admin</h3>
+    </div>
+    <div class="flex justify-end items-center">
+      <app-paginator [paginatorData]="paginatorData" />
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!--                                 Content                                 -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="flex-grow w-3/6 mt-5 m-auto my-outlet overflow-y-auto">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!--                                 Footer                                  -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="footer flex justify-evenly bg-white shadow-sm p-6">
+    @if (currentPageIndex > 0) {
+    <button (click)="onPrevious()"
+      class="group flex items-center px-4 py-2 bg-stepper-btn-transparent hover:bg-stepper-btn-back-hover font-medium text-secondary-zenithr hover:text-stepper-btn-back-text-hover rounded-md transition-colors duration-200">
+      <svg class="pr-1 text-secondary-zenithr group-hover:text-stepper-btn-back-text-hover" width="25" height="26"
+        viewBox="0 0 25 26" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M8.08594 12.3359L14.3359 6.125C14.6875 5.73438 15.2734 5.73438 15.6641 6.125C16.0156 6.47656 16.0156 7.0625 15.6641 7.41406L10.0391 13L15.625 18.625C16.0156 18.9766 16.0156 19.5625 15.625 19.9141C15.2734 20.3047 14.6875 20.3047 14.3359 19.9141L8.08594 13.6641C7.69531 13.3125 7.69531 12.7266 8.08594 12.3359Z" />
+      </svg>
+      Back
+    </button>
+
+    }@else {
+    <button (click)="onCancel()"
+      class="group flex items-center px-4 py-2 bg-stepper-btn-transparent hover:bg-stepper-btn-back-hover font-medium text-secondary-zenithr hover:text-stepper-btn-back-text-hover rounded-md transition-colors duration-200">
+      Cancel
+    </button>
+    }
+    @if (paginatorData.length - 1 > currentPageIndex) {
+    <button (click)="onNext()"
+      class="flex items-center px-4 py-2 text-white font-medium bg-primary-zenithr hover:bg-primary-button-hover rounded-md shadow transition-colors duration-200">
+      Next
+      <svg class="pl-1" width="20" height="24" viewBox="0 0 20 24" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M14.4141 11.3359C14.7656 11.7266 14.7656 12.3125 14.4141 12.6641L8.16406 18.9141C7.77344 19.3047 7.1875 19.3047 6.83594 18.9141C6.44531 18.5625 6.44531 17.9766 6.83594 17.625L12.4219 12.0391L6.83594 6.41406C6.44531 6.0625 6.44531 5.47656 6.83594 5.125C7.1875 4.73438 7.77344 4.73438 8.125 5.125L14.4141 11.3359Z" />
+      </svg>
+    </button>
+
+    }@else {
+    <button (click)="onFinish()" [ngClass]="{
+    'bg-primary-zenithr hover:bg-primary-button-hover': mainForm.valid,
+    'bg-disabled cursor-not-allowed': mainForm.invalid
+  }" class="flex items-center px-4 py-2 text-white font-medium rounded-md shadow transition-colors duration-200"
+      class="flex items-center px-4 py-2 text-white font-medium bg-disabled cursor-not-allowed rounded-md shadow transition-colors duration-200">
+      <svg class="pr-1" width="18" height="14" viewBox="0 0 18 14" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M17.4766 1.02344C17.8281 1.41406 17.8281 2 17.4766 2.35156L7.16406 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.0625C0.875 5.67188 1.46094 5.67188 1.8125 6.0625L6.46094 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344H17.4766Z" />
+      </svg>
+      Finish
+
+    </button>
+    }
+
+
+  </div>
+
+</div>

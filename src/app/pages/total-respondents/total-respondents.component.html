@@ -1,0 +1,16 @@
+<div class="p-6">
+  <h1 class="text-xl font-bold mb-2">Set the Total Number of Respondents</h1>
+  <p class="text-gray-600 mb-6">Define the total number of respondents for this scenario. This number determines the sample size for data collection and scoring distribution.</p>
+
+  <form [formGroup]="form">
+    <div class="mb-4">
+      <label for="totalRespondents" class="block text-secondary-zenithr font-bold mb-2">Total Respondents</label>
+      <input type="number" id="totalRespondents" formControlName="totalRespondents" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" [ngClass]="{'border-red-500': form.get('totalRespondents')?.invalid && form.get('totalRespondents')?.touched}">
+      @if (form.get('totalRespondents')?.invalid && form.get('totalRespondents')?.touched) {
+        <p class="text-red-500 text-xs italic mt-1">
+          Please enter a valid number of respondents (greater than 0).
+        </p>
+      }
+    </div>
+  </form>
+</div>

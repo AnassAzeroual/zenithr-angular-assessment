@@ -1,0 +1,50 @@
+<div class="flex-grow p-6 container-scenarios">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-2xl font-bold">Scenarios</h2>
+    <button routerLink="/survey"
+      class="flex items-center px-4 py-2 text-white bg-primary-zenithr hover:bg-primary-button-hover rounded-lg shadow transition-colors duration-200">
+      <img src="assets/img/plus.png" class="w-5 h-5 mr-1" alt="New Scenario" />
+      New Scenario
+    </button>
+  </div>
+
+  <div class="overflow-hidden">
+    <div class="flex items-center pb-4">
+      <div class="relative w-full max-w-xs">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-1">
+          <img src="assets/img/search.png" alt="search input" class="w-5 pl-1" />
+        </div>
+        <input type="text" placeholder="Type to search..."
+          class="focus:outline-none w-full pl-7 border text-secondary-1000 border-gray-200 text-md py-1 bg-white rounded-sm" />
+      </div>
+    </div>
+
+    <div class="space-y-4 text-secondary-zenithr font-bold">
+      <div class="flex items-center text-xs uppercase tracking-wider mb-0">
+        <div class="w-1/3 px-4 py-3">Scenario Name</div>
+        <div class="w-1/3 px-2 py-3">Number of Respondents</div>
+        <div class="w-1/3 px-2 py-3">Score Range</div>
+        <div class="relative px-2 py-3">
+          <span class="sr-only">Edit</span>
+        </div>
+      </div>
+
+      @for (scenario of scenarios; track scenario) {
+      <div class="flex items-center rounded-lg bg-white p-3 mb-2">
+        <div class="w-1/3 px-2 py-4 text-sm">
+          {{ scenario.name }}
+        </div>
+        <div class="w-1/3 px-4 py-4 text-sm">
+          {{ scenario.respondents }}
+        </div>
+        <div class="w-1/3 md:px-9 px-4 py-4 text-sm">
+          {{ scenario.scoreRange }}
+        </div>
+        <div class="px-2 py-4 text-sm">
+          <img src="assets/img/optionsdots.png" alt="options button" class="w-9 cursor-pointer hover:brightness-50" />
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

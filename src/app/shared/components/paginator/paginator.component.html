@@ -1,0 +1,24 @@
+<nav class="flex items-center space-x-4 text-secondary-1000 font-medium">
+  @for (step of paginatorData; track step.path; let i = $index) {
+  <div class="flex items-center">
+    @if (step.current) {
+    <div class="flex items-center space-x-2">
+      <div class="rounded-full h-8 w-8 flex items-center justify-center bg-gray-900 text-white">
+        {{ i + 1 }}
+      </div>
+      <span class="text-lg font-medium text-gray-900">{{ step.page }}</span>
+    </div>
+    }
+    @else if (step.valid && srvHelper.currentRouteIndex(paginatorData) > i) {
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="14" fill="#0082C6" />
+      <path d="M8 14L12 18L20 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    }@else {
+    <div class="font-medium rounded-full h-8 w-8 flex items-center justify-center border border-gray-400 text-gray-400">
+      {{ i + 1 }}
+    </div>
+    }
+  </div>
+  }
+</nav>

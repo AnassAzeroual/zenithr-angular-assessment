@@ -1,0 +1,74 @@
+<div class="flex-grow p-6 container-survey">
+  <div class="p-6" [formGroup]="form">
+    <h1 class="text-xl font-bold mb-2">Select Criteria for Distribution</h1>
+    <p class="text-gray-600 mb-6">
+      Choose the criteria that will be used for score distribution. You can apply a High (H) or Low
+      (L) distribution mode to each selected criterion.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h2 class="text-lg font-semibold mb-4">SELECTED CRITERIA</h2>
+        <ul class="space-y-2">
+          @for (criterion of allCriteria; track criterion; let i = $index) {
+          <li class="p-3 border rounded-md cursor-pointer flex items-center" (click)="onCriterionSelect(criterion, i)">
+            <input type="checkbox" [checked]="criterion.selected" class="mr-3" />
+            <span>{{ criterion.name }}</span>
+          </li>
+          }
+        </ul>
+      </div>
+
+      <div formArrayName="selectedCriteria">
+        <h2 class="text-lg font-semibold mb-4">SELECTED CRITERIA</h2>
+        @for (selectedCriterionGroup of selectedCriteria.controls; track selectedCriterionGroup; let
+        i = $index) {
+        <div [formGroupName]="i" class="bg-gray-100 p-4 rounded-md mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center">
+              <span class="mr-2">{{ i + 1 }}</span>
+              <span class="font-bold">{{ selectedCriterionGroup.value.name }}</span>
+            </div>
+            <button (click)="removeCriterion(i)" class="text-red-500">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                  clip-rule="evenodd" fill-rule="evenodd"></path>
+              </svg>
+            </button>
+          </div>
+          <div formArrayName="options">
+            @for (optionGroup of getOptions(i).controls; track optionGroup; let j = $index) {
+            <div [formGroupName]="j" class="flex items-center space-x-2 mb-2">
+              <input type="text" formControlName="name"
+                class="block w-2/3 border border-gray-400 rounded px-2 py-1 bg-gray-50" />
+              <input type="number" formControlName="percentage"
+                class="w-1/4 border border-gray-400 rounded px-2 py-1 text-right" />
+              <button (click)="removeOption(i, j)" class="text-red-500">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                    clip-rule="evenodd" fill-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+            }
+          </div>
+          <div class="flex justify-end items-center mt-2">
+            <span class="font-bold text-gray-700 mr-2">TOTAL DISTRIBUTION</span>
+            <span [ngClass]="{
+                'text-red-500': calculateTotal(selectedCriterionGroup) !== 100,
+                'text-blue-500': calculateTotal(selectedCriterionGroup) === 100
+              }">
+              {{ calculateTotal(selectedCriterionGroup) }}%
+            </span>
+          </div>
+          <button (click)="addOption(i)" class="mt-2 text-blue-500 font-semibold">
+            + Add {{ selectedCriterionGroup.value.name }}
+          </button>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

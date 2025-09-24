@@ -1,0 +1,78 @@
+<div class="layout-container flex flex-col h-screen bg-bg font-sans text-gray-800">
+  <!-- ----------------------------------------------------------------------- -->
+  <!--                                 Header                                  -->
+  <!-- ----------------------------------------------------------------------- -->
+  <header
+    class="boxShadow flex items-center justify-between flex-shrink-0 h-16 px-4 bg-white border-b border-gray-200 z-90">
+    <div class="flex items-center space-x-4">
+      <img src="assets/logo.png" alt="Zenithr Experience Logo" class="h-15 cursor-pointer" />
+      <div class="divider hidden md:block"></div>
+      <h1 class="text-sm font-medium text-secondary-zenithr hidden md:block">Employee Engagements</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <a href="#" class="flex items-center text-primary-zenithr hover:text-blue-800 transition-colors">
+        <img src="assets/img/gotobuilder.png" alt="Go to builder" class="w-5 h-5 mr-2" />
+        <span class="hidden md:flex">Go to Builder</span>
+      </a>
+
+      <button class="text-gray-400 hover:text-gray-600">
+        <img src="assets/img/apps.png" alt="Go to builder" class="w-5 h-5 mr-2" />
+      </button>
+
+      <button class="relative text-gray-400 hover:text-gray-600">
+        <img src="assets/img/notification.png" alt="Go to builder" class="w-5 h-5 mr-2" />
+      </button>
+
+      <div class="flex items-center space-x-2">
+        <div class="flex flex-col items-end cursor-pointer hidden sm:block">
+          <span class="text-sm font-medium">Jeanne Harris</span>
+          <div class="Investors">
+            Silver Investors
+            <svg class="ml-1" width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3.14062 3.85938L0.640625 1.35938C0.4375 1.17188 0.4375 0.84375 0.640625 0.65625C0.828125 0.453125 1.15625 0.453125 1.34375 0.65625L3.5 2.79688L5.64062 0.65625C5.82812 0.453125 6.15625 0.453125 6.34375 0.65625C6.54688 0.84375 6.54688 1.17188 6.34375 1.35938L3.84375 3.85938C3.65625 4.0625 3.32812 4.0625 3.14062 3.85938Z"
+                fill="#747884" />
+            </svg>
+
+          </div>
+        </div>
+        <img src="https://placehold.co/40x40/94A3B8/FFFFFF?text=JH" alt="Jeanne Harris"
+          class="w-10 h-10 rounded-full border-2 border-blue-600 object-cover cursor-pointer" />
+      </div>
+    </div>
+  </header>
+
+  <div class="flex flex-grow overflow-hidden">
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                                 Sidebar                                 -->
+    <!-- ----------------------------------------------------------------------- -->
+    <aside [class.w-16]="!isExpanded()" [class.w-56]="isExpanded()"
+      class="flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out bg-white border-r border-gray-200 z-10">
+      <div class="flex items-center justify-end px-2 py-2 h-16 mt-3 mb-3">
+        <button (click)="toggleSidebar()"
+          class="m-auto flex items-center justify-center w-8 h-8 rounded-full text-gray-400 hover:bg-gray-200 transition-colors"
+          [class.rotate-180]="isExpanded()">
+          <img src="assets/img/rightarrow-menu.png" alt="expend menu" class="w-10" />
+        </button>
+      </div>
+      <nav class="flex-grow p-2 space-y-2">
+        @for (item of menuItems; track item) {
+        <a href="#" class="flex items-center p-3 rounded-lg transition-colors duration-200"
+          [class]="item.active ? 'bg-blue-100 text-blue-800' : 'text-gray-600 hover:bg-gray-100'"
+          [class.justify-center]="!isExpanded()" [class.justify-start]="isExpanded()">
+          <img [src]="item.path" [alt]="item.alt" class="w-8" />
+          @if (isExpanded()) {
+          <span class="ml-4 whitespace-nowrap">{{ item.name }}</span>
+          }
+        </a>
+        }
+      </nav>
+    </aside>
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                              Main Content                               -->
+    <!-- ----------------------------------------------------------------------- -->
+    <div class="w-5/6 mt-5 m-auto my-outlet">
+      <router-outlet />
+    </div>
+  </div>
+</div>
