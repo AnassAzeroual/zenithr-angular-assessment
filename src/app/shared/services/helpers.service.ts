@@ -113,7 +113,7 @@ export class HelpersService {
         path: `/${parentPath}/${child.path}`,
         required: true,
         valid: true,
-        current: `/${parentPath}/${child.path}` === location.pathname
+        current: location.pathname.includes(`/${parentPath}/${child.path}`)
       }));
   }
 
