@@ -34,10 +34,6 @@ export class DynamicStepperComponent implements OnInit {
   }
 
   onNext() {
-    console.log(this.currentPageIndex + 1);
-    console.log(this.paginatorData);
-
-
     this.router.navigate([this.paginatorData.at(this.currentPageIndex + 1).path]);
   }
 

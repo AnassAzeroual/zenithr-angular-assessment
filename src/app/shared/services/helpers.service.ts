@@ -62,7 +62,6 @@ export class HelpersService {
     this.loadFormData(form);
 
     form.valueChanges.subscribe((res) => {
-      console.log(res.distributionForm?.selectedCriteria);
       this.saveFormData(form);
     });
 
