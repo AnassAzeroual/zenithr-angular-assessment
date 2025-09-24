@@ -1,59 +1,50 @@
-# StepperApp
+# Frontend Technical Assessment: Dynamic Stepper Component
+
+## StepperApp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+This project is a functional, full-screen dynamic stepper component built for an Angular application, as per the provided assessment requirements. It is designed to be highly reusable and configurable, with robust client-side validation and dynamic content injection.
 
-## Development server
+---
 
-To start a local development server, run:
+![Scenarios page](./homepage.PNG)
 
-```bash
-ng serve
-```
+## 1. How to Set Up and Run the Application
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+To set up and run this project, follow these steps:
 
-## Code scaffolding
+1.  **Install dependencies:** Ensure you have Node.js and the Angular CLI installed. Then, run the following command to install the project dependencies:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+    ```bash
+    npm install
+    ```
 
-```bash
-ng generate component component-name
-```
+2.  **Run the application:** Start the development server with the following command:
+    ```bash
+    ng serve
+    ```
+3.  Navigate to `http://localhost:4200/` in your web browser to view the application.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 2. Design Choices
 
-## Building
+### Modularity and Reusability
 
-To build the project run:
+The stepper is designed as a standalone component to be easily dropped into any part of a larger enterprise application. The architecture ensures a clear separation of concerns:
 
-```bash
-ng build
-```
+- **Main Stepper Component**: Manages the navigation state, step validity, and data flow.
+- **Step Components**: Each individual step (e.g., `EnpsSettingsComponent`, `ImpactDriversComponent`) is a self-contained component responsible for its own UI and form logic.
+- **Services**: Data management and communication between components would be handled by a dedicated service, though this is not fully implemented in the provided examples.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Configurability
 
-## Running unit tests
+The stepper is highly configurable to adapt to different workflows. This is achieved by:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- **Dynamic Content Injection**: The stepper component does not hardcode its content. Instead, it programmatically accepts an array of step objects, each defining the content (a component or template) and associated data.
+- **Data Handling**: The stepper component can be initialized with data from a parent component and will emit all consolidated data upon successful completion. This makes it suitable for various multi-step data collection workflows.
 
-```bash
-ng test
-```
+### Design Patterns
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Observer Pattern**: This is leveraged implicitly through Angular's reactive forms and RxJS observables. The `valueChanges` observable on form groups is subscribed to in the component, allowing it to reactively update calculated values and form validity.
+- **Strategy Pattern**: The different form components (`EnpsSettingsComponent`, `ImpactDriversComponent`, etc.) can be seen as different "strategies" for a step's content. The main stepper component can render any of these strategies based on the provided configuration.

@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "host": "rm -rf /docs && ng cache clean && ng build --configuration production --aot --output-path docs && cd docs/browser && mv * .. && rm -rf browser",
+    "host": "rm -rf /docs && ng cache clean && ng build --configuration production --aot --output-path docs && cd docs/browser && mv * .. && rm -rf browser && git add . && git commit -m 'host data' && git push",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
