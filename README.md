@@ -276,7 +276,7 @@ private loadFormData(form: FormGroup): void {
 
 **Benefits**:
 
-- **Data Integrity**: Form state preserved across browser refreshes
+- **Data Integrity**: Form state preserved across browser refreshes (Not in github pages, we can add .htaccess file)
 - **User Experience**: No data loss during navigation
 - **Performance**: Minimal memory footprint with sessionStorage
 - **Privacy**: Data automatically cleared when tab closes
