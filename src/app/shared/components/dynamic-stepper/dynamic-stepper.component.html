@@ -52,7 +52,7 @@
     </button>
 
     }@else {
-    <button (click)="onFinish()" [ngClass]="{
+    <button (click)="onFinish()" [disabled]="mainForm.invalid" [ngClass]="{
     'bg-primary-zenithr hover:bg-primary-button-hover': mainForm.valid,
     'bg-disabled cursor-not-allowed': mainForm.invalid
   }" class="flex items-center px-4 py-2 text-white font-medium rounded-md shadow transition-colors duration-200"
