@@ -48,7 +48,7 @@
           <div formArrayName="options">
             @for (optionGroup of getOptions(i).controls; track optionGroup; let j = $index) {
             <div [formGroupName]="j" class="flex items-center space-x-2 mb-2">
-              <img src="../../../assets/img/draganddrop.png" alt="draganddrop {{j}}" class="w-10 h-10 cursor-move" />
+              <img src="assets/img/draganddrop.png" alt="drag-drop {{j}}" class="w-10 h-10 cursor-move" />
               <input type="text" formControlName="name" class="block w-2/3 shadow rounded px-2 py-1 bg-white" />
               <input type="number" formControlName="percentage"
                 class="w-1/4 shadow rounded px-2 py-1 text-right bg-white" />
