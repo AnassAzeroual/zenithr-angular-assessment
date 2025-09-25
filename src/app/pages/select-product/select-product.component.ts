@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { HelpersService } from '../../shared/services/helpers.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class SelectProductComponent implements OnInit {
   ];
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSurveySelect(index: number, isChecked: boolean) {
     this.surveys[index].checked = isChecked;

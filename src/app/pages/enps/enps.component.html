@@ -1,5 +1,5 @@
 <div class="p-6">
-  <h1 class="text-xl font-bold mb-8 text-start">Configure eNPS Settings</h1>
+  <h1 class="text-xl font-medium mb-8 text-start">Configure eNPS Settings</h1>
 
   <div class="flex flex-row items-center justify-center mb-10">
     <svg class="mr-1" width="42" height="40" viewBox="0 0 42 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -8,38 +8,38 @@
         fill="#9297A0" />
     </svg>
 
-    <div class="text-[40px] font-medium text-gray-800">
+    <div class="text-4xl font-bold text-gray-800">
       {{ overallScore }}%
     </div>
   </div>
 
   <form [formGroup]="form">
-    <div class="bg-white rounded-md shadow">
-      <div class="flex items-center justify-between p-4 border-b">
+    <div class="">
+      <div class="bg-gray-100 mt-3 flex items-center justify-between p-4">
         <div class="flex items-center space-x-4">
-          <div class="w-4 h-4 rounded-full bg-green-500"></div>
-          <span class="font-semibold text-gray-800">Promoters</span>
+          <div class="w-8 h-8 rounded-sm bg-green-500"></div>
+          <span class="font-semibold text-secondary-zenithr">Promoters</span>
         </div>
         <input type="number" formControlName="promoters"
-          class="w-24 border rounded text-right p-2 focus:outline-none focus:border-blue-500">
+          class="bg-white w-24 rounded text-right p-2 focus:outline-none focus:border-blue-500">
       </div>
 
-      <div class="flex items-center justify-between p-4 border-b">
+      <div class="bg-gray-100 mt-3 flex items-center justify-between p-4">
         <div class="flex items-center space-x-4">
-          <div class="w-4 h-4 rounded-full bg-orange-500"></div>
-          <span class="font-semibold text-gray-800">Passives</span>
+          <div class="w-8 h-8 rounded-sm bg-orange-500"></div>
+          <span class="font-semibold text-secondary-zenithr">Passives</span>
         </div>
         <input type="number" formControlName="passives"
-          class="w-24 border rounded text-right p-2 focus:outline-none focus:border-blue-500">
+          class="bg-white w-24 rounded text-right p-2 focus:outline-none focus:border-blue-500">
       </div>
 
-      <div class="flex items-center justify-between p-4">
+      <div class="bg-gray-100 mt-3 flex items-center justify-between p-4">
         <div class="flex items-center space-x-4">
-          <div class="w-4 h-4 rounded-full bg-red-500"></div>
-          <span class="font-semibold text-gray-800">Detractors</span>
+          <div class="w-8 h-8 rounded-sm bg-red-500"></div>
+          <span class="font-semibold text-secondary-zenithr">Detractors</span>
         </div>
         <input type="number" formControlName="detractors"
-          class="w-24 border rounded text-right p-2 focus:outline-none focus:border-blue-500">
+          class="bg-white w-24 rounded text-right p-2 focus:outline-none focus:border-blue-500">
       </div>
     </div>
   </form>

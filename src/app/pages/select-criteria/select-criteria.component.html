@@ -11,8 +11,8 @@
         <h2 class="text-lg font-semibold mb-4">SELECTED CRITERIA</h2>
         <ul class="space-y-2">
           @for (criterion of allCriteria; track criterion; let i = $index) {
-          <li class="p-3 border rounded-md cursor-pointer flex items-center" (click)="onCriterionSelect(criterion, i)">
-            <input type="checkbox" [checked]="criterion.selected" class="mr-3" />
+          <li class="p-3 rounded-md cursor-pointer flex items-center" (click)="onCriterionSelect(criterion, i)">
+            <input type="checkbox" [checked]="criterion.selected" class="mr-3 w-6 h-6 rounded-md" />
             <span>{{ criterion.name }}</span>
           </li>
           }
@@ -30,33 +30,49 @@
               <span class="font-bold">{{ selectedCriterionGroup.value.name }}</span>
             </div>
             <button (click)="removeCriterion(i)" class="text-red-500">
-              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                  clip-rule="evenodd" fill-rule="evenodd"></path>
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1501_8547)">
+                  <rect width="32" height="32" rx="4" fill="#FF4530" fill-opacity="0.1" />
+                  <path
+                    d="M14.5312 9.5C14.4375 9.5 14.375 9.5625 14.3125 9.625L13.7188 10.5H18.25L17.6562 9.625C17.625 9.5625 17.5312 9.5 17.4375 9.5H14.5312ZM20.0625 10.5H20.4688H22H22.25C22.6562 10.5 23 10.8438 23 11.25C23 11.6875 22.6562 12 22.25 12H21.875L21.125 22.1562C21.0312 23.2188 20.1875 24 19.125 24H12.8438C11.7812 24 10.9375 23.2188 10.8438 22.1562L10.0938 12H9.75C9.3125 12 9 11.6875 9 11.25C9 10.8438 9.3125 10.5 9.75 10.5H10H11.5H11.9062L13.0625 8.78125C13.375 8.3125 13.9375 8 14.5312 8H17.4375C18.0312 8 18.5938 8.3125 18.9062 8.78125L20.0625 10.5ZM20.375 12H11.5938L12.3438 22.0625C12.375 22.3125 12.5938 22.5 12.8438 22.5H19.125C19.375 22.5 19.5938 22.3125 19.625 22.0625L20.375 12Z"
+                    fill="#FF4530" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_1501_8547">
+                    <rect width="32" height="32" rx="4" fill="white" />
+                  </clipPath>
+                </defs>
               </svg>
             </button>
           </div>
           <div formArrayName="options">
             @for (optionGroup of getOptions(i).controls; track optionGroup; let j = $index) {
             <div [formGroupName]="j" class="flex items-center space-x-2 mb-2">
-              <input type="text" formControlName="name"
-                class="block w-2/3 border border-gray-400 rounded px-2 py-1 bg-gray-50" />
+              <img src="../../../assets/img/draganddrop.png" alt="draganddrop {{j}}" class="w-10 h-10 cursor-move" />
+              <input type="text" formControlName="name" class="block w-2/3 shadow rounded px-2 py-1 bg-white" />
               <input type="number" formControlName="percentage"
-                class="w-1/4 border border-gray-400 rounded px-2 py-1 text-right" />
+                class="w-1/4 shadow rounded px-2 py-1 text-right bg-white" />
               <button (click)="removeOption(i, j)" class="text-red-500">
-                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                    clip-rule="evenodd" fill-rule="evenodd"></path>
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_1501_8547)">
+                    <rect width="32" height="32" rx="4" fill="#FF4530" fill-opacity="0.1" />
+                    <path
+                      d="M14.5312 9.5C14.4375 9.5 14.375 9.5625 14.3125 9.625L13.7188 10.5H18.25L17.6562 9.625C17.625 9.5625 17.5312 9.5 17.4375 9.5H14.5312ZM20.0625 10.5H20.4688H22H22.25C22.6562 10.5 23 10.8438 23 11.25C23 11.6875 22.6562 12 22.25 12H21.875L21.125 22.1562C21.0312 23.2188 20.1875 24 19.125 24H12.8438C11.7812 24 10.9375 23.2188 10.8438 22.1562L10.0938 12H9.75C9.3125 12 9 11.6875 9 11.25C9 10.8438 9.3125 10.5 9.75 10.5H10H11.5H11.9062L13.0625 8.78125C13.375 8.3125 13.9375 8 14.5312 8H17.4375C18.0312 8 18.5938 8.3125 18.9062 8.78125L20.0625 10.5ZM20.375 12H11.5938L12.3438 22.0625C12.375 22.3125 12.5938 22.5 12.8438 22.5H19.125C19.375 22.5 19.5938 22.3125 19.625 22.0625L20.375 12Z"
+                      fill="#FF4530" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1501_8547">
+                      <rect width="32" height="32" rx="4" fill="white" />
+                    </clipPath>
+                  </defs>
                 </svg>
               </button>
             </div>
             }
           </div>
-          <div class="flex justify-end items-center mt-2">
-            <span class="font-bold text-gray-700 mr-2">TOTAL DISTRIBUTION</span>
-            <span [ngClass]="{
+          <div class="flex justify-between items-center mt-2 text-secondary-zenithr">
+            <span class="text-sm font-medium mr-2">TOTAL DISTRIBUTION</span>
+            <span class="font-medium px-4 py-1 bg-primary-100 rounded-sm" [ngClass]="{
                 'text-red-500': calculateTotal(selectedCriterionGroup) !== 100,
                 'text-blue-500': calculateTotal(selectedCriterionGroup) === 100
               }">

@@ -3,7 +3,7 @@
   <!--                                 Header                                  -->
   <!-- ----------------------------------------------------------------------- -->
   <header
-    class="boxShadow flex items-center justify-between flex-shrink-0 h-16 px-4 bg-white border-b border-gray-200 z-90">
+    class="boxShadow flex items-center justify-between flex-shrink-0 h-16 px-4 bg-white border-b border-gray-200 z-90 animate__animated animate__bounceInDown">
     <div class="flex items-center space-x-4">
       <img src="assets/logo.png" alt="Zenithr Experience Logo" class="h-15 cursor-pointer" />
       <div class="divider hidden md:block"></div>
@@ -47,7 +47,7 @@
     <!--                                 Sidebar                                 -->
     <!-- ----------------------------------------------------------------------- -->
     <aside [class.w-16]="!isExpanded()" [class.w-56]="isExpanded()"
-      class="flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out bg-white border-r border-gray-200 z-10">
+      class="flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out bg-white border-r border-gray-200 z-10 animate__animated animate__bounceInLeft ">
       <div class="flex items-center justify-end px-2 py-2 h-16 mt-3 mb-3">
         <button (click)="toggleSidebar()"
           class="m-auto flex items-center justify-center w-8 h-8 rounded-full text-gray-400 hover:bg-gray-200 transition-colors"
