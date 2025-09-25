@@ -9,6 +9,12 @@ This project is a functional, full-screen dynamic stepper component built for an
 
 ![Scenarios page](./homepage.PNG)
 
+## Demo Video : 
+https://www.loom.com/share/f5284b4d77b542a793f7d15554be9261?sid=b52b7c1c-b464-49c6-b19d-4531803b1e42
+
+## Demo Link : 
+https://anassazeroual.github.io/zenithr-angular-assessment
+
 ## Table of Contents
 
 - [Quick Start](#quick-start)
